@@ -1,0 +1,12 @@
+{
+    "shortcuts": [
+        {
+            "command": "jupyterlab_code_formatter:yapf",
+            "keys": [
+                "Ctrl K",
+                "Ctrl D"
+            ],
+            "selector": ".jp-Notebook.jp-mod-editMode"
+        }
+    ]
+}
