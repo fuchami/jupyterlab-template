@@ -1,4 +1,6 @@
-# Docker fo ML
+# Docker for JupyterLab
+
+Dockerで立ち上がるオレオレJupyterLab環境
 
 ## usage
 ```
