@@ -2,7 +2,5 @@
     "imap": [
         ["jj", "<Esc>"],
         ["<C-j>", "<Esc>"],
-        ["<Ctrl-j>", "<Esc>"],
-        ["Ctrl j", "<Esc>"],
     ],
 }

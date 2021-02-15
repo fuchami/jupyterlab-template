@@ -1,7 +1,16 @@
 {
     "preferences": {
         "default_formatter": {
-            "python": "yapf"
+            "python": [
+                "isort",
+                "yapf"
+            ]
         }
+    },
+    "isort": {
+        "line_length": 80,
+        "combine_star": true,
+        "force_single_line": true,
+        "order_by_type": true
     }
 }

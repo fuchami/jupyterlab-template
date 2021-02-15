@@ -1,8 +1,8 @@
-jupyterlab~=2.2.5
 numpy
-scipy
 pandas
 matplotlib
 seaborn
 scikit-learn
-category_encoders
+lightgbm
+# xgboost
+# keras

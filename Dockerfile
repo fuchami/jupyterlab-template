@@ -1,77 +1,51 @@
-FROM ubuntu:18.04
+FROM python:3.8
 
-# language conf
-ENV LANG C.UTF-8
-ENV TZ Asia/Tokyo
-ENV PYTHONIOENCODING "utf-8"
-ENV PYTHONUNBUFFERED 1
+RUN apt-get update -y \
+    && apt-get upgrade -y
 
-# update ubuntu
-RUN apt-get update -y && \
-    apt-get upgrade -y && \
-    apt-get dist-upgrade -y
-
-# Install dependences
-RUN apt-get update --fix-missing && \
-  apt-get install -y \
+RUN curl -sL https://deb.nodesource.com/setup_12.x |bash - \
+    && apt-get install -y --no-install-recommends \
     wget \
-    build-essential \
-    gcc \
-    zlib1g-dev \
     git \
     vim \
     curl \
     make \
-    xdg-utils \
-    cmake
+    cmake \
+    nodejs \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf \
+        /var/lib/apt/lists/* \
+        /var/cache/apt/* \
+        /usr/local/src/* \
+        /tmp/*
 
-# remove cache files
-RUN apt-get autoremove -y && apt-get clean && \
-  rm -rf /usr/local/src/*
-
-# install python
-RUN apt-get install -y python3 python3-pip 
-
-# update pip
-RUN python3 -m pip install pip --upgrade
-RUN python3 -m pip install wheel
-
-# install additional packages
+# install python library
 COPY requirements.txt .
-RUN pip install -U pip &&\
-  pip install -r requirements.txt &&\
-  # remove cache files
-  rm -rf ~/.cache/pip
+RUN pip3 install --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt \
+    && rm -rf ~/.cache/pip
 
-# install node.js for jupyterlab extension
-RUN curl -sL https://deb.nodesource.com/setup_12.x |bash -
-RUN apt install -y nodejs
-
-# install kite
-# RUN bash -c "$(wget -q -O - https://linux.kite.com/dls/linux/current)" 
-RUN pip install jupyter-kite
-
-# install jupyterlab extension
-RUN jupyter labextension install \
-    @lckr/jupyterlab_variableinspector \
-    @jupyterlab/git \
-    @jupyterlab/toc \
-    @hokyjack/jupyterlab-monokai-plus \
-    jupyterlab-flake8 \
-    jupyterlab-vimrc \
-    @axlair/jupyterlab_vim
-
-RUN pip install jupyterlab-git \
+# install jupyterlab & extentions
+RUN pip3 install --upgrade --no-cache-dir \
+    'jupyterlab~=3.0' \
+    'jupyterlab-kite>=2.0.2' \
+    jupyterlab_code_formatter \
     yapf \
-    jupyterlab_code_formatter \
-    flake8 \
-  && pip install --upgrade jupyterlab-git \
-    jupyterlab_code_formatter \
-    flake8
+    && rm -rf ~/.cache/pip \
+    && jupyter labextension install \
+      @hokyjack/jupyterlab-monokai-plus \
+      @ryantam626/jupyterlab_code_formatter \
+      @jupyterlab/toc \
+      jupyterlab-vimrc \
+      @axlair/jupyterlab_vim \
+    && jupyter serverextension enable --py jupyterlab_code_formatter
 
-# install code formatter
-RUN jupyter labextension install @ryantam626/jupyterlab_code_formatter \
-  && jupyter serverextension enable --py jupyterlab_code_formatter \
-  && pip install --upgrade jupyterlab_code_formatter
+# install jupyter-kite
+RUN cd && \
+    wget https://linux.kite.com/dls/linux/current && \
+    chmod 777 current && \
+    sed -i 's/"--no-launch"//g' current > /dev/null && \
+    ./current --install ./kite-installer
 
 WORKDIR /home/work/

@@ -2,7 +2,7 @@
     "codeCellConfig": {
         "autoClosingBrackets": true,
         "fontFamily": "Menlo",
-        "fontSize": 15,
+        "fontSize": 16,
         "lineHeight": null,
         "lineNumbers": true,
         "lineWrap": "off",
@@ -19,7 +19,23 @@
     "markdownCellConfig": {
         "autoClosingBrackets": false,
         "fontFamily": "Menlo",
-        "fontSize": 15,
+        "fontSize": 16,
+        "lineHeight": null,
+        "lineNumbers": false,
+        "lineWrap": "on",
+        "matchBrackets": false,
+        "readOnly": false,
+        "insertSpaces": true,
+        "tabSize": 4,
+        "wordWrapColumn": 80,
+        "rulers": [],
+        "codeFolding": false,
+        "lineWiseCopyCut": true
+    },
+    "rawCellConfig": {
+        "autoClosingBrackets": false,
+        "fontFamily": "Menlo",
+        "fontSize": 14,
         "lineHeight": null,
         "lineNumbers": false,
         "lineWrap": "on",
