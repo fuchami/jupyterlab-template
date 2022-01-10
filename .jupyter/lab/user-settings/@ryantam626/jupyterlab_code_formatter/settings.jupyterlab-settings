@@ -12,5 +12,6 @@
         "combine_star": true,
         "force_single_line": true,
         "order_by_type": true
-    }
+    },
+    "formatOnSave": true
 }

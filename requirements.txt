@@ -1,8 +1,16 @@
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-lightgbm
-# xgboost
-# keras
+# for machine learning libraries
+numpy~=1.22.0
+pandas~=1.3.5
+matplotlib~=3.5.1
+seaborn~=0.11.2
+scikit-learn~=1.0.2
+lightgbm~=3.3.2
+
+# jupyterlab & extentions
+yapf~=0.32.0
+isort~=5.10.1
+jupyterlab~=3.2.6
+jupyterlab_code_formatter~=1.4.10
+jupyterlab-kite>=2.0.2
+jupyterlab_vim~=0.14.5
+jupyterlab-vimrc~=0.5.2

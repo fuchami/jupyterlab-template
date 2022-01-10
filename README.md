@@ -2,23 +2,15 @@
 
 Dockerで立ち上がるオレオレJupyterLab環境
 
-## usage
+## jupyterlab 起動方法
 ```
-$dc up --build
-```
-
-## install [kite](https://github.com/kiteco/jupyterlab-kite)
-```
-$ bash -c "$(wget -q -O - https://linux.kite.com/dls/linux/current)"
-$ pip install jupyter-kite
-$ jupyter labextension install "@kiteco/jupyterlab-kite"
+$docker-compose up --build
 ```
 
-## install [code_formatter](https://jupyterlab-code-formatter.readthedocs.io/en/latest/installation.html#installation-step-1-installing-the-plugin-itself)
+## vimキーバインドを無効化したい場合
+requirements.txtの下記箇所をコメントアウトしてください。
 
 ```
-jupyter labextension install @ryantam626/jupyterlab_code_formatter
-pip install jupyterlab_code_formatter
-pip install --upgrade jupyterlab_code_formatter
-jupyter serverextension enable --py jupyterlab_code_formatter
+jupyterlab_vim~=0.14.5
+jupyterlab-vimrc~=0.5.2
 ```
